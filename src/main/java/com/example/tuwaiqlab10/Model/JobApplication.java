@@ -1,6 +1,7 @@
 package com.example.tuwaiqlab10.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,10 +16,12 @@ public class JobApplication {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false)
+    @NotNull(message = "User ID is required")
+    @Column(nullable = false, columnDefinition = "int not null")
     private Integer userId;
 
-    @Column(nullable = false)
+    @NotNull(message = "Job post ID is required")
+    @Column(nullable = false, columnDefinition = "int not null")
     private Integer jobPostId;
 
 }

@@ -28,7 +28,11 @@ public class JobApplicationController {
             return ResponseEntity.status(400).body(errors.getFieldError().getDefaultMessage());
         }
 
-        jobApplicationService.addJobApplication(jobApplication);
+        if (!jobApplicationService.addJobApplication(jobApplication)) {
+            return ResponseEntity.status(400)
+                    .body(new ApiResponse("Invalid user ID or job post ID"));
+        }
+
         return ResponseEntity.status(200).body(new ApiResponse("Job application added successfully"));
     }
 
